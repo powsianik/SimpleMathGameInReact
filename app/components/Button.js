@@ -1,3 +1,9 @@
-/**
- * Created by Przemek on 19.07.2017.
- */
+var React = require("react");
+
+const Button = (props) =>{
+    return(
+        <div>Button</div>
+    );
+}
+
+module.exports = Button;

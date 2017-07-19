@@ -1,3 +1,9 @@
-/**
- * Created by Przemek on 19.07.2017.
- */
+var React = require("react");
+
+const Answer = (props) =>{
+    return(
+        <div>Answer</div>
+    );
+}
+
+module.exports = Answer;

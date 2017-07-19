@@ -1,3 +1,11 @@
-/**
- * Created by Przemek on 19.07.2017.
- */
+var React = require("react");
+
+const Stars = (props) =>{
+    return(
+        <div>
+            <i className="fa fa-star"></i>
+        </div>
+    );
+}
+
+module.exports = Stars;
