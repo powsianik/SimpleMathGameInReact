@@ -2,7 +2,11 @@ var React = require("react");
 
 const Stars = (props) =>{
     return(
-        <div>
+        <div className="col-sm-5">
+            <i className="fa fa-star"></i>
+            <i className="fa fa-star"></i>
+            <i className="fa fa-star"></i>
+            <i className="fa fa-star"></i>
             <i className="fa fa-star"></i>
         </div>
     );

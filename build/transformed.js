@@ -22420,15 +22420,20 @@ class Game extends React.Component {
     render() {
         return React.createElement(
             "div",
-            null,
+            { className: "container" },
             React.createElement(
                 "h3",
                 null,
                 "Stars Math Game"
             ),
-            React.createElement(Stars, null),
-            React.createElement(Answer, null),
-            React.createElement(Button, null)
+            React.createElement("hr", null),
+            React.createElement(
+                "div",
+                { className: "row" },
+                React.createElement(Stars, null),
+                React.createElement(Answer, null),
+                React.createElement(Button, null)
+            )
         );
     }
 }
@@ -22444,7 +22449,11 @@ var React = __webpack_require__(16);
 const Stars = props => {
     return React.createElement(
         "div",
-        null,
+        { className: "col-sm-5" },
+        React.createElement("i", { className: "fa fa-star" }),
+        React.createElement("i", { className: "fa fa-star" }),
+        React.createElement("i", { className: "fa fa-star" }),
+        React.createElement("i", { className: "fa fa-star" }),
         React.createElement("i", { className: "fa fa-star" })
     );
 };
@@ -22460,8 +22469,8 @@ var React = __webpack_require__(16);
 const Answer = props => {
     return React.createElement(
         "div",
-        null,
-        "Answer"
+        { className: "col-sm-5" },
+        "..."
     );
 };
 
@@ -22476,8 +22485,12 @@ var React = __webpack_require__(16);
 const Button = props => {
     return React.createElement(
         "div",
-        null,
-        "Button"
+        { className: "col-sm-2" },
+        React.createElement(
+            "button",
+            null,
+            "="
+        )
     );
 };
 

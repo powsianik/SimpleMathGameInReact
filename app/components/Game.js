@@ -6,11 +6,14 @@ var Button = require("../components/Button");
 class Game extends React.Component{
     render(){
         return(
-            <div>
+            <div className="container">
                 <h3>Stars Math Game</h3>
-                <Stars />
-                <Answer />
-                <Button />
+                <hr/>
+                <div className="row">
+                    <Stars />
+                    <Answer />
+                    <Button />
+                </div>
             </div>
         );
     }

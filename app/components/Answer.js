@@ -2,7 +2,7 @@ var React = require("react");
 
 const Answer = (props) =>{
     return(
-        <div>Answer</div>
+        <div className="col-sm-5">...</div>
     );
 }
 
