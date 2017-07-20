@@ -2,6 +2,7 @@ var React = require("react");
 var Stars = require("../components/Stars");
 var Answer = require("../components/Answer");
 var Button = require("../components/Button");
+var Numbers = require("../components/Numbers");
 
 class Game extends React.Component{
     render(){
@@ -11,9 +12,11 @@ class Game extends React.Component{
                 <hr/>
                 <div className="row">
                     <Stars />
-                    <Answer />
                     <Button />
+                    <Answer />
                 </div>
+                <br />
+                <Numbers />
             </div>
         );
     }

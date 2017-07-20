@@ -1285,7 +1285,7 @@ var _prodInvariant = __webpack_require__(3),
     _assign = __webpack_require__(4);
 
 var CallbackQueue = __webpack_require__(61);
-var PooledClass = __webpack_require__(15);
+var PooledClass = __webpack_require__(16);
 var ReactFeatureFlags = __webpack_require__(62);
 var ReactReconciler = __webpack_require__(19);
 var Transaction = __webpack_require__(28);
@@ -1540,7 +1540,7 @@ module.exports = ReactUpdates;
 
 var _assign = __webpack_require__(4);
 
-var PooledClass = __webpack_require__(15);
+var PooledClass = __webpack_require__(16);
 
 var emptyFunction = __webpack_require__(9);
 var warning = __webpack_require__(2);
@@ -2013,6 +2013,16 @@ module.exports = DOMProperty;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+module.exports = __webpack_require__(17);
+
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
  * Copyright 2014-present, Facebook, Inc.
  * All rights reserved.
@@ -2356,7 +2366,7 @@ module.exports = ReactElement;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2474,16 +2484,6 @@ module.exports = PooledClass;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = __webpack_require__(17);
-
-
-/***/ }),
 /* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2505,7 +2505,7 @@ var _assign = __webpack_require__(4);
 var ReactBaseClasses = __webpack_require__(50);
 var ReactChildren = __webpack_require__(83);
 var ReactDOMFactories = __webpack_require__(87);
-var ReactElement = __webpack_require__(14);
+var ReactElement = __webpack_require__(15);
 var ReactPropTypes = __webpack_require__(91);
 var ReactVersion = __webpack_require__(94);
 
@@ -6911,7 +6911,7 @@ module.exports = getIteratorFn;
 
 var ReactCurrentOwner = __webpack_require__(10);
 var ReactComponentTreeHook = __webpack_require__(7);
-var ReactElement = __webpack_require__(14);
+var ReactElement = __webpack_require__(15);
 
 var checkReactTypeSpec = __webpack_require__(88);
 
@@ -7378,7 +7378,7 @@ var _prodInvariant = __webpack_require__(3);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var PooledClass = __webpack_require__(15);
+var PooledClass = __webpack_require__(16);
 
 var invariant = __webpack_require__(1);
 
@@ -9756,7 +9756,7 @@ module.exports = getHostComponentFromComposite;
 /* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var React = __webpack_require__(16);
+var React = __webpack_require__(14);
 var ReactDOM = __webpack_require__(98);
 var App = __webpack_require__(184);
 
@@ -9780,7 +9780,7 @@ ReactDOM.render(React.createElement(App, null), document.getElementById("app"));
 
 
 var PooledClass = __webpack_require__(84);
-var ReactElement = __webpack_require__(14);
+var ReactElement = __webpack_require__(15);
 
 var emptyFunction = __webpack_require__(9);
 var traverseAllChildren = __webpack_require__(85);
@@ -10339,7 +10339,7 @@ module.exports = KeyEscapeUtils;
 
 
 
-var ReactElement = __webpack_require__(14);
+var ReactElement = __webpack_require__(15);
 
 /**
  * Create a factory that creates HTML tag elements.
@@ -10660,7 +10660,7 @@ module.exports = ReactPropTypesSecret;
 
 
 
-var _require = __webpack_require__(14),
+var _require = __webpack_require__(15),
     isValidElement = _require.isValidElement;
 
 var factory = __webpack_require__(55);
@@ -11295,7 +11295,7 @@ module.exports = '15.6.1';
 var _require = __webpack_require__(50),
     Component = _require.Component;
 
-var _require2 = __webpack_require__(14),
+var _require2 = __webpack_require__(15),
     isValidElement = _require2.isValidElement;
 
 var ReactNoopUpdateQueue = __webpack_require__(51);
@@ -12201,7 +12201,7 @@ module.exports = factory;
 
 var _prodInvariant = __webpack_require__(18);
 
-var ReactElement = __webpack_require__(14);
+var ReactElement = __webpack_require__(15);
 
 var invariant = __webpack_require__(1);
 
@@ -12932,7 +12932,7 @@ module.exports = BeforeInputEventPlugin;
 
 var _assign = __webpack_require__(4);
 
-var PooledClass = __webpack_require__(15);
+var PooledClass = __webpack_require__(16);
 
 var getTextContentAccessor = __webpack_require__(60);
 
@@ -19094,7 +19094,7 @@ module.exports = flattenChildren;
 
 var _assign = __webpack_require__(4);
 
-var PooledClass = __webpack_require__(15);
+var PooledClass = __webpack_require__(16);
 var Transaction = __webpack_require__(28);
 var ReactInstrumentation = __webpack_require__(8);
 var ReactServerUpdateQueue = __webpack_require__(148);
@@ -19785,7 +19785,7 @@ var _assign = __webpack_require__(4);
 
 var EventListener = __webpack_require__(77);
 var ExecutionEnvironment = __webpack_require__(6);
-var PooledClass = __webpack_require__(15);
+var PooledClass = __webpack_require__(16);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactUpdates = __webpack_require__(11);
 
@@ -20027,7 +20027,7 @@ module.exports = ReactInjection;
 var _assign = __webpack_require__(4);
 
 var CallbackQueue = __webpack_require__(61);
-var PooledClass = __webpack_require__(15);
+var PooledClass = __webpack_require__(16);
 var ReactBrowserEventEmitter = __webpack_require__(32);
 var ReactInputSelection = __webpack_require__(78);
 var ReactInstrumentation = __webpack_require__(8);
@@ -22392,7 +22392,7 @@ module.exports = ReactDOMInvalidARIAHook;
 /* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var React = __webpack_require__(16);
+var React = __webpack_require__(14);
 var Game = __webpack_require__(185);
 
 class App extends React.Component {
@@ -22411,10 +22411,11 @@ module.exports = App;
 /* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var React = __webpack_require__(16);
+var React = __webpack_require__(14);
 var Stars = __webpack_require__(186);
 var Answer = __webpack_require__(187);
 var Button = __webpack_require__(188);
+var Numbers = __webpack_require__(189);
 
 class Game extends React.Component {
     render() {
@@ -22431,9 +22432,11 @@ class Game extends React.Component {
                 "div",
                 { className: "row" },
                 React.createElement(Stars, null),
-                React.createElement(Answer, null),
-                React.createElement(Button, null)
-            )
+                React.createElement(Button, null),
+                React.createElement(Answer, null)
+            ),
+            React.createElement("br", null),
+            React.createElement(Numbers, null)
         );
     }
 }
@@ -22444,7 +22447,7 @@ module.exports = Game;
 /* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var React = __webpack_require__(16);
+var React = __webpack_require__(14);
 
 const Stars = props => {
     return React.createElement(
@@ -22464,7 +22467,7 @@ module.exports = Stars;
 /* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var React = __webpack_require__(16);
+var React = __webpack_require__(14);
 
 const Answer = props => {
     return React.createElement(
@@ -22480,7 +22483,7 @@ module.exports = Answer;
 /* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var React = __webpack_require__(16);
+var React = __webpack_require__(14);
 
 const Button = props => {
     return React.createElement(
@@ -22495,6 +22498,40 @@ const Button = props => {
 };
 
 module.exports = Button;
+
+/***/ }),
+/* 189 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var React = __webpack_require__(14);
+
+const Numbers = props => {
+    return React.createElement(
+        "div",
+        { className: "card text-center" },
+        React.createElement(
+            "div",
+            null,
+            React.createElement(
+                "span",
+                null,
+                "1"
+            ),
+            React.createElement(
+                "span",
+                { className: "selected" },
+                "7"
+            ),
+            React.createElement(
+                "span",
+                { className: "used" },
+                "5"
+            )
+        )
+    );
+};
+
+module.exports = Numbers;
 
 /***/ })
 /******/ ]);
