@@ -5,18 +5,46 @@ var Button = require("../components/Button");
 var Numbers = require("../components/Numbers");
 
 class Game extends React.Component{
+    constructor(props){
+        super(props);
+
+        this.state = {
+            selectedNumbers: [2, 4],
+            numberOfStars: Math.random()*9
+        };
+
+        this.selectNumber = this.selectNumber.bind(this);
+        this.unselectNumber = this.unselectNumber.bind(this);
+    }
+
+    selectNumber(clickedNumber){
+        if(this.state.selectedNumbers.indexOf(clickedNumber) === -1){
+            this.setState(prevState => ({
+                selectedNumbers: prevState.selectedNumbers.concat(clickedNumber)
+            }));
+        }
+    }
+
+    unselectNumber(clickedNumber){
+        if(this.state.selectedNumbers.indexOf(clickedNumber) >= 0){
+            this.setState(prevState => ({
+                selectedNumbers: prevState.selectedNumbers.filter(number => number !== clickedNumber)
+            }));
+        }
+    }
+
     render(){
         return(
             <div className="container">
                 <h3>Stars Math Game</h3>
                 <hr/>
                 <div className="row">
-                    <Stars />
-                    <Button />
-                    <Answer />
+                    <Stars numberOfStars={this.state.numberOfStars} />
+                    <Button isAnySelectedNumber={this.state.selectedNumbers.length === 0} />
+                    <Answer selectedNumbers={this.state.selectedNumbers} unselectNumber={this.unselectNumber} />
                 </div>
                 <br />
-                <Numbers />
+                <Numbers selectedNumbers={this.state.selectedNumbers} selectNumber={this.selectNumber}/>
             </div>
         );
     }
