@@ -22450,14 +22450,17 @@ module.exports = Game;
 var React = __webpack_require__(14);
 
 const Stars = props => {
+    const numberOfStars = Math.random() * 9;
+
+    let stars = [];
+    for (let i = 0; i < numberOfStars; ++i) {
+        stars.push(React.createElement("i", { key: i, className: "fa fa-star" }));
+    }
+
     return React.createElement(
         "div",
         { className: "col-sm-5" },
-        React.createElement("i", { className: "fa fa-star" }),
-        React.createElement("i", { className: "fa fa-star" }),
-        React.createElement("i", { className: "fa fa-star" }),
-        React.createElement("i", { className: "fa fa-star" }),
-        React.createElement("i", { className: "fa fa-star" })
+        stars
     );
 };
 
