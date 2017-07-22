@@ -22423,11 +22423,13 @@ class Game extends React.Component {
 
         this.state = {
             selectedNumbers: [2, 4],
-            numberOfStars: Math.random() * 9
+            numberOfStars: 1 + Math.floor(Math.random() * 9),
+            answerIsCorrect: null
         };
 
         this.selectNumber = this.selectNumber.bind(this);
         this.unselectNumber = this.unselectNumber.bind(this);
+        this.checkAnswer = this.checkAnswer.bind(this);
     }
 
     selectNumber(clickedNumber) {
@@ -22446,6 +22448,12 @@ class Game extends React.Component {
         }
     }
 
+    checkAnswer() {
+        this.setState(prevState => ({
+            answerIsCorrect: prevState.numberOfStars === prevState.selectedNumbers.reduce((acc, n) => acc + n, 0)
+        }));
+    }
+
     render() {
         return React.createElement(
             "div",
@@ -22460,7 +22468,7 @@ class Game extends React.Component {
                 "div",
                 { className: "row" },
                 React.createElement(Stars, { numberOfStars: this.state.numberOfStars }),
-                React.createElement(Button, { isAnySelectedNumber: this.state.selectedNumbers.length === 0 }),
+                React.createElement(Button, { isAnySelectedNumber: this.state.selectedNumbers.length === 0, checkAnswer: this.checkAnswer, isAnswerCorrect: this.state.answerIsCorrect }),
                 React.createElement(Answer, { selectedNumbers: this.state.selectedNumbers, unselectNumber: this.unselectNumber })
             ),
             React.createElement("br", null),
@@ -22519,14 +22527,35 @@ module.exports = Answer;
 var React = __webpack_require__(14);
 
 const Button = props => {
+    let button;
+    switch (props.isAnswerCorrect) {
+        case true:
+            button = React.createElement(
+                "button",
+                { className: "btn btn-success" },
+                React.createElement("i", { className: "fa fa-check" })
+            );
+            break;
+        case false:
+            button = React.createElement(
+                "button",
+                { className: "btn btn-danger" },
+                React.createElement("i", { className: "fa fa-times" })
+            );
+            break;
+        default:
+            button = React.createElement(
+                "button",
+                { className: "btn", disabled: props.isAnySelectedNumber, onClick: props.checkAnswer },
+                "="
+            );
+            break;
+    }
+
     return React.createElement(
         "div",
         { className: "col-sm-2" },
-        React.createElement(
-            "button",
-            { className: "btn", disabled: props.isAnySelectedNumber },
-            "="
-        )
+        button
     );
 };
 

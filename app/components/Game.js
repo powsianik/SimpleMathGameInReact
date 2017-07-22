@@ -10,11 +10,13 @@ class Game extends React.Component{
 
         this.state = {
             selectedNumbers: [2, 4],
-            numberOfStars: Math.random()*9
+            numberOfStars: 1 + Math.floor((Math.random()*9)),
+            answerIsCorrect: null
         };
 
         this.selectNumber = this.selectNumber.bind(this);
         this.unselectNumber = this.unselectNumber.bind(this);
+        this.checkAnswer = this.checkAnswer.bind(this);
     }
 
     selectNumber(clickedNumber){
@@ -33,6 +35,12 @@ class Game extends React.Component{
         }
     }
 
+    checkAnswer(){
+        this.setState(prevState => ({
+            answerIsCorrect: prevState.numberOfStars === prevState.selectedNumbers.reduce((acc, n) => acc + n, 0)
+        }));
+    }
+
     render(){
         return(
             <div className="container">
@@ -40,7 +48,7 @@ class Game extends React.Component{
                 <hr/>
                 <div className="row">
                     <Stars numberOfStars={this.state.numberOfStars} />
-                    <Button isAnySelectedNumber={this.state.selectedNumbers.length === 0} />
+                    <Button isAnySelectedNumber={this.state.selectedNumbers.length === 0} checkAnswer={this.checkAnswer} isAnswerCorrect={this.state.answerIsCorrect}/>
                     <Answer selectedNumbers={this.state.selectedNumbers} unselectNumber={this.unselectNumber} />
                 </div>
                 <br />
