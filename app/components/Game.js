@@ -3,6 +3,7 @@ var Stars = require("../components/Stars");
 var Answer = require("../components/Answer");
 var Button = require("../components/Button");
 var Numbers = require("../components/Numbers");
+var DoneFrame = require("../components/DoneFrame");
 
 class Game extends React.Component{
     constructor(props){
@@ -13,7 +14,8 @@ class Game extends React.Component{
             usedNumbers: [],
             numberOfStars: 1 + Math.floor((Math.random()*9)),
             answerIsCorrect: null,
-            remainNumOfRedraws: 5
+            remainNumOfRedraws: 5,
+            doneStatus: null
         };
 
         this.selectNumber = this.selectNumber.bind(this);
@@ -77,7 +79,15 @@ class Game extends React.Component{
                     <Answer selectedNumbers={this.state.selectedNumbers} unselectNumber={this.unselectNumber} />
                 </div>
                 <br />
-                <Numbers selectedNumbers={this.state.selectedNumbers} selectNumber={this.selectNumber} usedNumbers={this.state.usedNumbers}/>
+                {
+                    this.state.doneStatus ?
+                        <DoneFrame doneStatus={this.state.doneStatus} />
+                        :
+                        <Numbers selectedNumbers={this.state.selectedNumbers} selectNumber={this.selectNumber} usedNumbers={this.state.usedNumbers}/>
+                }
+
+                <br/>
+
             </div>
         );
     }

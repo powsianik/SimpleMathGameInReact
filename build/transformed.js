@@ -548,7 +548,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 var _prodInvariant = __webpack_require__(3);
 
-var DOMProperty = __webpack_require__(13);
+var DOMProperty = __webpack_require__(14);
 var ReactDOMComponentFlags = __webpack_require__(57);
 
 var invariant = __webpack_require__(1);
@@ -1798,6 +1798,16 @@ function getPooledWarningPropertyDefinition(propName, getVal) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+module.exports = __webpack_require__(17);
+
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -2007,16 +2017,6 @@ var DOMProperty = {
 
 module.exports = DOMProperty;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = __webpack_require__(17);
-
 
 /***/ }),
 /* 15 */
@@ -7987,7 +7987,7 @@ module.exports = CSSProperty;
 
 
 
-var DOMProperty = __webpack_require__(13);
+var DOMProperty = __webpack_require__(14);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactInstrumentation = __webpack_require__(8);
 
@@ -9193,7 +9193,7 @@ module.exports = getActiveElement;
 var _prodInvariant = __webpack_require__(3);
 
 var DOMLazyTree = __webpack_require__(20);
-var DOMProperty = __webpack_require__(13);
+var DOMProperty = __webpack_require__(14);
 var React = __webpack_require__(17);
 var ReactBrowserEventEmitter = __webpack_require__(32);
 var ReactCurrentOwner = __webpack_require__(10);
@@ -9756,7 +9756,7 @@ module.exports = getHostComponentFromComposite;
 /* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var React = __webpack_require__(14);
+var React = __webpack_require__(13);
 var ReactDOM = __webpack_require__(98);
 var App = __webpack_require__(184);
 
@@ -14273,7 +14273,7 @@ module.exports = EnterLeaveEventPlugin;
 
 
 
-var DOMProperty = __webpack_require__(13);
+var DOMProperty = __webpack_require__(14);
 
 var MUST_USE_PROPERTY = DOMProperty.injection.MUST_USE_PROPERTY;
 var HAS_BOOLEAN_VALUE = DOMProperty.injection.HAS_BOOLEAN_VALUE;
@@ -14970,7 +14970,7 @@ var AutoFocusUtils = __webpack_require__(124);
 var CSSPropertyOperations = __webpack_require__(125);
 var DOMLazyTree = __webpack_require__(20);
 var DOMNamespaces = __webpack_require__(40);
-var DOMProperty = __webpack_require__(13);
+var DOMProperty = __webpack_require__(14);
 var DOMPropertyOperations = __webpack_require__(69);
 var EventPluginHub = __webpack_require__(22);
 var EventPluginRegistry = __webpack_require__(27);
@@ -19985,7 +19985,7 @@ module.exports = getUnboundedScrollPosition;
 
 
 
-var DOMProperty = __webpack_require__(13);
+var DOMProperty = __webpack_require__(14);
 var EventPluginHub = __webpack_require__(22);
 var EventPluginUtils = __webpack_require__(34);
 var ReactComponentEnvironment = __webpack_require__(43);
@@ -22139,7 +22139,7 @@ module.exports = ReactMount.renderSubtreeIntoContainer;
 
 
 
-var DOMProperty = __webpack_require__(13);
+var DOMProperty = __webpack_require__(14);
 var EventPluginRegistry = __webpack_require__(27);
 var ReactComponentTreeHook = __webpack_require__(7);
 
@@ -22306,7 +22306,7 @@ module.exports = ReactDOMNullInputValuePropHook;
 
 
 
-var DOMProperty = __webpack_require__(13);
+var DOMProperty = __webpack_require__(14);
 var ReactComponentTreeHook = __webpack_require__(7);
 
 var warning = __webpack_require__(2);
@@ -22392,7 +22392,7 @@ module.exports = ReactDOMInvalidARIAHook;
 /* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var React = __webpack_require__(14);
+var React = __webpack_require__(13);
 var Game = __webpack_require__(185);
 
 class App extends React.Component {
@@ -22411,11 +22411,12 @@ module.exports = App;
 /* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var React = __webpack_require__(14);
+var React = __webpack_require__(13);
 var Stars = __webpack_require__(186);
 var Answer = __webpack_require__(187);
 var Button = __webpack_require__(188);
 var Numbers = __webpack_require__(189);
+var DoneFrame = __webpack_require__(193);
 
 class Game extends React.Component {
     constructor(props) {
@@ -22426,7 +22427,8 @@ class Game extends React.Component {
             usedNumbers: [],
             numberOfStars: 1 + Math.floor(Math.random() * 9),
             answerIsCorrect: null,
-            remainNumOfRedraws: 5
+            remainNumOfRedraws: 5,
+            doneStatus: null
         };
 
         this.selectNumber = this.selectNumber.bind(this);
@@ -22497,7 +22499,8 @@ class Game extends React.Component {
                 React.createElement(Answer, { selectedNumbers: this.state.selectedNumbers, unselectNumber: this.unselectNumber })
             ),
             React.createElement("br", null),
-            React.createElement(Numbers, { selectedNumbers: this.state.selectedNumbers, selectNumber: this.selectNumber, usedNumbers: this.state.usedNumbers })
+            this.state.doneStatus ? React.createElement(DoneFrame, { doneStatus: this.state.doneStatus }) : React.createElement(Numbers, { selectedNumbers: this.state.selectedNumbers, selectNumber: this.selectNumber, usedNumbers: this.state.usedNumbers }),
+            React.createElement("br", null)
         );
     }
 }
@@ -22508,7 +22511,7 @@ module.exports = Game;
 /* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var React = __webpack_require__(14);
+var React = __webpack_require__(13);
 
 const Stars = props => {
     let stars = [];
@@ -22529,7 +22532,7 @@ module.exports = Stars;
 /* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var React = __webpack_require__(14);
+var React = __webpack_require__(13);
 
 const Answer = props => {
     return React.createElement(
@@ -22549,7 +22552,7 @@ module.exports = Answer;
 /* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var React = __webpack_require__(14);
+var React = __webpack_require__(13);
 
 const Button = props => {
     let button;
@@ -22599,7 +22602,7 @@ module.exports = Button;
 /* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var React = __webpack_require__(14);
+var React = __webpack_require__(13);
 var Lodash = __webpack_require__(190);
 
 const Numbers = props => {
@@ -39776,6 +39779,42 @@ module.exports = function(module) {
 	return module;
 };
 
+
+/***/ }),
+/* 193 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var React = __webpack_require__(13);
+
+const DoneFrame = props => {
+    let doneInfo;
+    switch (props.doneStatus) {
+        case 1:
+            doneInfo = React.createElement(
+                "div",
+                { className: "alert alert-success text-center" },
+                "Congratulations !!!"
+            );
+            break;
+        case 2:
+            doneInfo = React.createElement(
+                "div",
+                { className: "alert alert-danger text-center" },
+                "Game Over"
+            );
+            break;
+        default:
+            break;
+    }
+
+    return React.createElement(
+        "div",
+        null,
+        doneInfo
+    );
+};
+
+module.exports = DoneFrame;
 
 /***/ })
 /******/ ]);
