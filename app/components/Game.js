@@ -9,19 +9,24 @@ class Game extends React.Component{
         super(props);
 
         this.state = {
-            selectedNumbers: [2, 4],
+            selectedNumbers: [],
+            usedNumbers: [],
             numberOfStars: 1 + Math.floor((Math.random()*9)),
-            answerIsCorrect: null
+            answerIsCorrect: null,
+            remainNumOfRedraws: 5
         };
 
         this.selectNumber = this.selectNumber.bind(this);
         this.unselectNumber = this.unselectNumber.bind(this);
         this.checkAnswer = this.checkAnswer.bind(this);
+        this.acceptAnswer = this.acceptAnswer.bind(this);
+        this.tryOtherNums = this.tryOtherNums.bind(this);
     }
 
     selectNumber(clickedNumber){
         if(this.state.selectedNumbers.indexOf(clickedNumber) === -1){
             this.setState(prevState => ({
+                answerIsCorrect: null,
                 selectedNumbers: prevState.selectedNumbers.concat(clickedNumber)
             }));
         }
@@ -41,6 +46,24 @@ class Game extends React.Component{
         }));
     }
 
+    acceptAnswer(){
+        this.setState(prevState => ({
+            usedNumbers: prevState.usedNumbers.concat(prevState.selectedNumbers),
+            selectedNumbers: [],
+            answerIsCorrect: null,
+            numberOfStars: 1 + Math.floor((Math.random()*9))
+        }));
+    }
+
+    tryOtherNums(){
+        this.setState(prevState => ({
+            selectedNumbers: [],
+            answerIsCorrect: null,
+            numberOfStars: 1 + Math.floor((Math.random()*9)),
+            remainNumOfRedraws: prevState.remainNumOfRedraws - 1
+        }));
+    }
+
     render(){
         return(
             <div className="container">
@@ -48,11 +71,13 @@ class Game extends React.Component{
                 <hr/>
                 <div className="row">
                     <Stars numberOfStars={this.state.numberOfStars} />
-                    <Button isAnySelectedNumber={this.state.selectedNumbers.length === 0} checkAnswer={this.checkAnswer} isAnswerCorrect={this.state.answerIsCorrect}/>
+                    <Button isAnySelectedNumber={this.state.selectedNumbers.length === 0} checkAnswer={this.checkAnswer}
+                            isAnswerCorrect={this.state.answerIsCorrect} acceptAnswer={this.acceptAnswer} tryOtherNums={this.tryOtherNums}
+                            remainNumOfRedraws={this.state.remainNumOfRedraws}/>
                     <Answer selectedNumbers={this.state.selectedNumbers} unselectNumber={this.unselectNumber} />
                 </div>
                 <br />
-                <Numbers selectedNumbers={this.state.selectedNumbers} selectNumber={this.selectNumber}/>
+                <Numbers selectedNumbers={this.state.selectedNumbers} selectNumber={this.selectNumber} usedNumbers={this.state.usedNumbers}/>
             </div>
         );
     }

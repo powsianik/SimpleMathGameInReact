@@ -4,7 +4,7 @@ const Button = (props) =>{
     let button;
     switch(props.isAnswerCorrect){
         case true:
-            button = <button className="btn btn-success">
+            button = <button className="btn btn-success" onClick={props.acceptAnswer}>
                     <i className="fa fa-check"></i>
                 </button>
             break;
@@ -23,6 +23,10 @@ const Button = (props) =>{
     return(
         <div className="col-sm-2">
             {button}
+            <br/><br/>
+            <button className="btn btn-warning btn-sm" onClick={props.tryOtherNums} disabled={props.remainNumOfRedraws < 1}>
+                <i className="fa fa-refresh"></i> {props.remainNumOfRedraws}
+            </button>
         </div>
     );
 }

@@ -3,7 +3,10 @@ var Lodash = require("lodash");
 
 const Numbers = (props) =>{
     const numberClassName = function(number){
-        if(props.selectedNumbers.indexOf(number) >= 0){
+        if(props.usedNumbers.indexOf(number) >= 0){
+            return "used";
+        }
+        else if(props.selectedNumbers.indexOf(number) >= 0){
             return "selected";
         }
     }

@@ -22422,19 +22422,24 @@ class Game extends React.Component {
         super(props);
 
         this.state = {
-            selectedNumbers: [2, 4],
+            selectedNumbers: [],
+            usedNumbers: [],
             numberOfStars: 1 + Math.floor(Math.random() * 9),
-            answerIsCorrect: null
+            answerIsCorrect: null,
+            remainNumOfRedraws: 5
         };
 
         this.selectNumber = this.selectNumber.bind(this);
         this.unselectNumber = this.unselectNumber.bind(this);
         this.checkAnswer = this.checkAnswer.bind(this);
+        this.acceptAnswer = this.acceptAnswer.bind(this);
+        this.tryOtherNums = this.tryOtherNums.bind(this);
     }
 
     selectNumber(clickedNumber) {
         if (this.state.selectedNumbers.indexOf(clickedNumber) === -1) {
             this.setState(prevState => ({
+                answerIsCorrect: null,
                 selectedNumbers: prevState.selectedNumbers.concat(clickedNumber)
             }));
         }
@@ -22454,6 +22459,24 @@ class Game extends React.Component {
         }));
     }
 
+    acceptAnswer() {
+        this.setState(prevState => ({
+            usedNumbers: prevState.usedNumbers.concat(prevState.selectedNumbers),
+            selectedNumbers: [],
+            answerIsCorrect: null,
+            numberOfStars: 1 + Math.floor(Math.random() * 9)
+        }));
+    }
+
+    tryOtherNums() {
+        this.setState(prevState => ({
+            selectedNumbers: [],
+            answerIsCorrect: null,
+            numberOfStars: 1 + Math.floor(Math.random() * 9),
+            remainNumOfRedraws: prevState.remainNumOfRedraws - 1
+        }));
+    }
+
     render() {
         return React.createElement(
             "div",
@@ -22468,11 +22491,13 @@ class Game extends React.Component {
                 "div",
                 { className: "row" },
                 React.createElement(Stars, { numberOfStars: this.state.numberOfStars }),
-                React.createElement(Button, { isAnySelectedNumber: this.state.selectedNumbers.length === 0, checkAnswer: this.checkAnswer, isAnswerCorrect: this.state.answerIsCorrect }),
+                React.createElement(Button, { isAnySelectedNumber: this.state.selectedNumbers.length === 0, checkAnswer: this.checkAnswer,
+                    isAnswerCorrect: this.state.answerIsCorrect, acceptAnswer: this.acceptAnswer, tryOtherNums: this.tryOtherNums,
+                    remainNumOfRedraws: this.state.remainNumOfRedraws }),
                 React.createElement(Answer, { selectedNumbers: this.state.selectedNumbers, unselectNumber: this.unselectNumber })
             ),
             React.createElement("br", null),
-            React.createElement(Numbers, { selectedNumbers: this.state.selectedNumbers, selectNumber: this.selectNumber })
+            React.createElement(Numbers, { selectedNumbers: this.state.selectedNumbers, selectNumber: this.selectNumber, usedNumbers: this.state.usedNumbers })
         );
     }
 }
@@ -22532,7 +22557,7 @@ const Button = props => {
         case true:
             button = React.createElement(
                 "button",
-                { className: "btn btn-success" },
+                { className: "btn btn-success", onClick: props.acceptAnswer },
                 React.createElement("i", { className: "fa fa-check" })
             );
             break;
@@ -22555,7 +22580,16 @@ const Button = props => {
     return React.createElement(
         "div",
         { className: "col-sm-2" },
-        button
+        button,
+        React.createElement("br", null),
+        React.createElement("br", null),
+        React.createElement(
+            "button",
+            { className: "btn btn-warning btn-sm", onClick: props.tryOtherNums, disabled: props.remainNumOfRedraws < 1 },
+            React.createElement("i", { className: "fa fa-refresh" }),
+            " ",
+            props.remainNumOfRedraws
+        )
     );
 };
 
@@ -22570,7 +22604,9 @@ var Lodash = __webpack_require__(190);
 
 const Numbers = props => {
     const numberClassName = function (number) {
-        if (props.selectedNumbers.indexOf(number) >= 0) {
+        if (props.usedNumbers.indexOf(number) >= 0) {
+            return "used";
+        } else if (props.selectedNumbers.indexOf(number) >= 0) {
             return "selected";
         }
     };
