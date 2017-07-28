@@ -20,6 +20,8 @@ const DoneFrame = (props) =>{
     return(
         <div>
             {doneInfo}
+            <br/>
+            <button className="btn btn-info" onClick={props.playAgain}>Play Again</button>
         </div>
     );
 }

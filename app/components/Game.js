@@ -23,6 +23,8 @@ class Game extends React.Component{
         this.checkAnswer = this.checkAnswer.bind(this);
         this.acceptAnswer = this.acceptAnswer.bind(this);
         this.tryOtherNums = this.tryOtherNums.bind(this);
+        this.updateDoneStatus = this.updateDoneStatus.bind(this);
+        this.playAgain = this.playAgain.bind(this);
     }
 
     selectNumber(clickedNumber){
@@ -42,10 +44,20 @@ class Game extends React.Component{
         }
     }
 
+    updateDoneStatus(){
+        if(this.state.usedNumbers.length === 9){
+            this.setState(prevState => ({doneStatus: 1}));
+        }else if(this.state.remainNumOfRedraws === 0){
+            this.setState(prevState => ({doneStatus: 2}));
+        }
+    }
+
     checkAnswer(){
         this.setState(prevState => ({
             answerIsCorrect: prevState.numberOfStars === prevState.selectedNumbers.reduce((acc, n) => acc + n, 0)
         }));
+
+        this.updateDoneStatus();
     }
 
     acceptAnswer(){
@@ -66,6 +78,17 @@ class Game extends React.Component{
         }));
     }
 
+    playAgain(){
+        this.setState(prevState => ({
+            selectedNumbers: [],
+            usedNumbers: [],
+            numberOfStars: 1 + Math.floor((Math.random()*9)),
+            answerIsCorrect: null,
+            remainNumOfRedraws: 5,
+            doneStatus: null
+        }));
+    }
+
     render(){
         return(
             <div className="container">
@@ -81,7 +104,7 @@ class Game extends React.Component{
                 <br />
                 {
                     this.state.doneStatus ?
-                        <DoneFrame doneStatus={this.state.doneStatus} />
+                        <DoneFrame doneStatus={this.state.doneStatus} playAgain={this.playAgain} />
                         :
                         <Numbers selectedNumbers={this.state.selectedNumbers} selectNumber={this.selectNumber} usedNumbers={this.state.usedNumbers}/>
                 }
